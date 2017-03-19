@@ -1,0 +1,35 @@
+# Loacal temp files
+_temp*
+_old
+
+# IDE
+.idea
+.c9revisions
+*.sublime*
+
+# Env
+.env
+
+# Dependency directories
+node_modules
+typings
+
+# Local dependency directory
+!src/node_modules
+
+# Optional npm cache directory
+.npm
+
+# Logs
+logs
+*.log
+npm-debug.log
+lerna-debug.log
+
+# Test code coverage
+coverage
+lib-cov
+.nyc_output
+
+#Other
+*.DS_Store

@@ -1,0 +1,5 @@
+{
+  "presets": ["es2015-node4"],
+  "plugins": ["transform-async-to-generator"],
+  "sourceMaps": false
+}

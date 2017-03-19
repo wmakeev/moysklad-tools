@@ -1,0 +1,8 @@
+{
+  "editor.rulers": [100],
+  "editor.tabSize": 2,
+  "editor.renderIndentGuides": true,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "vsicons.presets.angular": false
+}
