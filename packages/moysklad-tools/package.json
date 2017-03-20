@@ -1,0 +1,41 @@
+{
+  "name": "moysklad-tools",
+  "version": "0.0.1",
+  "description": "Набор инструментов для библиотеки moysklad",
+  "main": "lib/index.js",
+  "scripts": {
+    "lint": "eslint src",
+    "clean": "rm -rf lib || :",
+    "build": "npm run clean && cp -rf src lib && babel --out-dir lib ./src",
+    "test": "npm run lint && npm run build && blue-tape -r dotenv/config -r isomorphic-fetch lib/**/__tests__/*.test.js | tap-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmakeev/moysklad-tools/tree/master/packages/moysklad-tools"
+  },
+  "keywords": [
+    "moysklad",
+    "tools"
+  ],
+  "author": "Vitaliy V. Makeev",
+  "dependencies": {
+    "have2": "github:wmakeev/have2#d8445dff842c7ece17507018d70f71851f865c18",
+    "moysklad-type-matchers": "^0.0.1"
+  },
+  "devDependencies": {
+    "moysklad": "^0.0.3",
+    "blue-tape": "^1.0.0",
+    "dotenv": "^4.0.0",
+    "debug": "^2.6.3",
+    "tap-spec": "^4.1.1",
+    "isomorphic-fetch": "^2.2.1",
+    "babel-cli": "^6.24.0",
+    "babel-plugin-transform-async-to-generator": "^6.22.0",
+    "babel-preset-es2015-node4": "^2.1.1",
+    "eslint": "^3.13.0",
+    "eslint-config-standard": "6.2.0",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1"
+  },
+  "license": "MIT"
+}
