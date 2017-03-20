@@ -1,6 +1,6 @@
 {
   "name": "moysklad-type-matchers",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Набор функций для проверки значений на соответствие типам данных",
   "main": "index.js",
   "scripts": {

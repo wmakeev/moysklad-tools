@@ -1,6 +1,6 @@
 {
   "name": "moysklad-extension-queue",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Очередь http запросов (расширение для библиотеки moysklad)",
   "main": "lib/index.js",
   "scripts": {
