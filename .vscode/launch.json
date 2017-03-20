@@ -24,7 +24,7 @@
       "type": "node2",
       "request": "launch",
       "runtimeExecutable": "node",
-      "program": "/Users/mvv/Documents/GitHub/moysklad/src/extensions/queue/__tests__/index.test.js",
+      "program": "/Users/mvv/Documents/GitHub/moysklad-tools/packages/moysklad-tools-metadata/src/__tests__/aggregateMetadata.test.js",
       "cwd": "${workspaceRoot}",
       "runtimeArgs": [
         "--harmony",
@@ -39,7 +39,7 @@
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "node",
-      "program": "/Users/mvv/Documents/GitHub/moysklad/lib/__tests__/index.test.js",
+      "program": "/Users/mvv/Documents/GitHub/moysklad-tools/packages/moysklad-tools-metadata/lib/__tests__/aggregateMetadata.test.js",
       "cwd": "${workspaceRoot}",
       "runtimeArgs": [
         "--require",
