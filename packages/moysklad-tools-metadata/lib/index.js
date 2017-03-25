@@ -1,3 +1,5 @@
-"use strict";
+'use strict';
 
-module.exports = {};
+module.exports = {
+  aggregateMetadata: require('./aggregateMetadata')
+};
