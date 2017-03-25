@@ -20,6 +20,12 @@
       ]
     },
     {
+      "type": "node",
+      "request": "launch",
+      "name": "{some}/test",
+      "program": "/Users/mvv/Documents/GitHub/moysklad-tools/packages/moysklad-extension-tools/index.test.js"
+    },
+    {
       "name": "src/{some}.test",
       "type": "node2",
       "request": "launch",
@@ -39,7 +45,7 @@
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "node",
-      "program": "/Users/mvv/Documents/GitHub/moysklad-tools/packages/moysklad-tools-metadata/lib/__tests__/aggregateMetadata.test.js",
+      "program": "/Users/mvv/Documents/GitHub/moysklad-tools/packages/moysklad-tools/lib/__tests__/loadRows.test.js",
       "cwd": "${workspaceRoot}",
       "runtimeArgs": [
         "--require",
