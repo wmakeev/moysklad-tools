@@ -4,8 +4,8 @@ const have = require('have2').with({
   uuid: require('moysklad-type-matchers/types/uuid')
 })
 
-module.exports = function getAttr () {
-  let { entity, attrId } = have.strict(arguments, [
+module.exports = function getAttr (...args) {
+  let { entity, attrId } = have.strict(args, [
     { entity: 'Obj', attrId: 'uuid' },
     { entity: 'Obj', meta: 'Obj' }, // TODO meta
     have.argumentsObject

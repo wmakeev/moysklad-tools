@@ -5,8 +5,8 @@ const have = require('have2').with({
 })
 const getAttr = require('./getAttr')
 
-module.exports = function getAttrVal () {
-  let { entity, attrId } = have.strict(arguments, [
+module.exports = function getAttrVal (...args) {
+  let { entity, attrId } = have.strict(args, [
     { entity: 'Obj', attrId: 'uuid' },
     { entity: 'Obj', meta: 'Obj' }, // TODO meta
     have.argumentsObject

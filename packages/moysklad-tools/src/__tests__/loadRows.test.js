@@ -2,7 +2,7 @@
 
 const test = require('blue-tape')
 const Moysklad = require('moysklad')
-const loadRows = require('../loadRows')
+const { loadRows } = require('..')
 
 const ORDER_LARGE_ID = 'dd5d3aff-08d6-11e7-7a69-97110015919e'
 const POSITIONS_LARGE_COUNT = 333
@@ -12,14 +12,14 @@ const POSITIONS_SMALL_COUNT = 89
 
 const uniqCount = items => [...new Set(items)].length
 
-test('loadRows method', t => {
+test('tools.loadRows', t => {
   t.equal(typeof loadRows, 'function', 'should be function')
   t.end()
 })
 
 // TODO Test throws on incorrect arguments?
 
-test('loadRows returns rows from expanded collection', async t => {
+test('tools.loadRows returns rows from expanded collection', async t => {
   const ms = Moysklad()
 
   let order = await ms.GET(['entity/customerorder', ORDER_SMALL_ID], { expand: 'positions' })
@@ -35,7 +35,7 @@ test('loadRows returns rows from expanded collection', async t => {
     `should return ${POSITIONS_SMALL_COUNT} uniq positions`)
 })
 
-test('loadRows load and returns rows from not expanded collection', async t => {
+test('tools.loadRows load and returns rows from not expanded collection', async t => {
   const ms = Moysklad()
 
   let order = await ms.GET(['entity/customerorder', ORDER_SMALL_ID])
@@ -49,22 +49,23 @@ test('loadRows load and returns rows from not expanded collection', async t => {
     `should return ${POSITIONS_SMALL_COUNT} uniq positions`)
 })
 
-test('loadRows load and returns rows from not expanded collection (limit specified)', async t => {
-  const LIMIT = 33
-  const ms = Moysklad()
+test('tools.loadRows load and returns rows from not expanded collection (limit specified)',
+  async t => {
+    const LIMIT = 33
+    const ms = Moysklad()
 
-  let order = await ms.GET(['entity/customerorder', ORDER_SMALL_ID])
-  let rows = await loadRows(ms, order.positions, { limit: LIMIT })
+    let order = await ms.GET(['entity/customerorder', ORDER_SMALL_ID])
+    let rows = await loadRows(ms, order.positions, { limit: LIMIT })
 
-  t.true(rows instanceof Array, 'should return rows array')
+    t.true(rows instanceof Array, 'should return rows array')
 
-  t.equals(rows.length, POSITIONS_SMALL_COUNT,
-    `should return ${POSITIONS_SMALL_COUNT} positions`)
-  t.equal(uniqCount(rows.map(p => p.id)), POSITIONS_SMALL_COUNT,
-    `should return ${POSITIONS_SMALL_COUNT} uniq positions`)
-})
+    t.equals(rows.length, POSITIONS_SMALL_COUNT,
+      `should return ${POSITIONS_SMALL_COUNT} positions`)
+    t.equal(uniqCount(rows.map(p => p.id)), POSITIONS_SMALL_COUNT,
+      `should return ${POSITIONS_SMALL_COUNT} uniq positions`)
+  })
 
-test('loadRows returns from expanded collection and load others pages', async t => {
+test('tools.loadRows returns from expanded collection and load others pages', async t => {
   let ms = Moysklad()
 
   let order = await ms.GET(['entity/customerorder', ORDER_LARGE_ID], { expand: 'positions' })
@@ -78,7 +79,7 @@ test('loadRows returns from expanded collection and load others pages', async t 
     `should return ${POSITIONS_LARGE_COUNT} uniq positions`)
 })
 
-test('loadRows returns from expanded collection and load others pages (with offset) #1',
+test('tools.loadRows returns from expanded collection and load others pages (with offset) #1',
   async t => {
     const LIMIT = 55
     const OFFSET = 60
@@ -98,7 +99,7 @@ test('loadRows returns from expanded collection and load others pages (with offs
       `should return ${POSITIONS_LARGE_COUNT - OFFSET} uniq positions`)
   })
 
-test('loadRows returns from expanded collection and load others pages (with offset) #2',
+test('tools.loadRows returns from expanded collection and load others pages (with offset) #2',
   async t => {
     const LIMIT = 50
     const OFFSET = 133

@@ -19,7 +19,7 @@
   ],
   "author": "Vitaliy V. Makeev",
   "dependencies": {
-    "have2": "github:wmakeev/have2#d8445dff842c7ece17507018d70f71851f865c18",
+    "have2": "^1.0.0-beta.1",
     "moysklad-type-matchers": "^0.0.2"
   },
   "devDependencies": {
