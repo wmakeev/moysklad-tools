@@ -10,7 +10,6 @@ const QueueExtension = require('moysklad-extension-queue')
 const Moysklad = require('moysklad').compose(QueueExtension)
 
 test('aggregateMetadata is ok', t => {
-  t.ok(aggregateMetadata)
   t.equals(typeof aggregateMetadata, 'function')
   t.end()
 })
