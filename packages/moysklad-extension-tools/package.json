@@ -1,6 +1,6 @@
 {
   "name": "moysklad-extension-tools",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Набор инструментов (расширение для библиотеки moysklad)",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "extension"
   ],
   "dependencies": {
-    "moysklad-tools": "0.0.2",
+    "moysklad-tools": "^0.0.3",
     "stampit": "^3.1.2"
   },
   "devDependencies": {
