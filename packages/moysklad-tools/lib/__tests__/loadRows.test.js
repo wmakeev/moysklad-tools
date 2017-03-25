@@ -6,7 +6,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 const test = require('blue-tape');
 const Moysklad = require('moysklad');
-const loadRows = require('../loadRows');
+
+var _require = require('..');
+
+const loadRows = _require.loadRows;
+
 
 const ORDER_LARGE_ID = 'dd5d3aff-08d6-11e7-7a69-97110015919e';
 const POSITIONS_LARGE_COUNT = 333;
@@ -16,14 +20,14 @@ const POSITIONS_SMALL_COUNT = 89;
 
 const uniqCount = items => [].concat(_toConsumableArray(new Set(items))).length;
 
-test('loadRows method', t => {
+test('tools.loadRows', t => {
   t.equal(typeof loadRows, 'function', 'should be function');
   t.end();
 });
 
 // TODO Test throws on incorrect arguments?
 
-test('loadRows returns rows from expanded collection', (() => {
+test('tools.loadRows returns rows from expanded collection', (() => {
   var _ref = _asyncToGenerator(function* (t) {
     const ms = Moysklad();
 
@@ -45,7 +49,7 @@ test('loadRows returns rows from expanded collection', (() => {
   };
 })());
 
-test('loadRows load and returns rows from not expanded collection', (() => {
+test('tools.loadRows load and returns rows from not expanded collection', (() => {
   var _ref2 = _asyncToGenerator(function* (t) {
     const ms = Moysklad();
 
@@ -65,7 +69,7 @@ test('loadRows load and returns rows from not expanded collection', (() => {
   };
 })());
 
-test('loadRows load and returns rows from not expanded collection (limit specified)', (() => {
+test('tools.loadRows load and returns rows from not expanded collection (limit specified)', (() => {
   var _ref3 = _asyncToGenerator(function* (t) {
     const LIMIT = 33;
     const ms = Moysklad();
@@ -86,7 +90,7 @@ test('loadRows load and returns rows from not expanded collection (limit specifi
   };
 })());
 
-test('loadRows returns from expanded collection and load others pages', (() => {
+test('tools.loadRows returns from expanded collection and load others pages', (() => {
   var _ref4 = _asyncToGenerator(function* (t) {
     let ms = Moysklad();
 
@@ -106,7 +110,7 @@ test('loadRows returns from expanded collection and load others pages', (() => {
   };
 })());
 
-test('loadRows returns from expanded collection and load others pages (with offset) #1', (() => {
+test('tools.loadRows returns from expanded collection and load others pages (with offset) #1', (() => {
   var _ref5 = _asyncToGenerator(function* (t) {
     const LIMIT = 55;
     const OFFSET = 60;
@@ -131,7 +135,7 @@ test('loadRows returns from expanded collection and load others pages (with offs
   };
 })());
 
-test('loadRows returns from expanded collection and load others pages (with offset) #2', (() => {
+test('tools.loadRows returns from expanded collection and load others pages (with offset) #2', (() => {
   var _ref6 = _asyncToGenerator(function* (t) {
     const LIMIT = 50;
     const OFFSET = 133;
