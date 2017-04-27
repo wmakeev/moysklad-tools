@@ -38,9 +38,7 @@ module.exports = function createAttr() {
     };
   } else {
     attr.value = {
-      meta: {
-        name: parsedArgs.name
-      }
+      name: parsedArgs.name
     };
   }
 

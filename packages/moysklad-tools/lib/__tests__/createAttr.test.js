@@ -30,18 +30,14 @@ test('tools.createAttr', t => {
   t.deepEqual(createAttr(moysklad, ATTR_ID, 'strName'), {
     id: ATTR_ID,
     value: {
-      meta: {
-        name: 'strName'
-      }
+      name: 'strName'
     }
   }, 'should create customentity attribute by entity name #1');
 
   t.deepEqual(createAttr(ATTR_ID, 'strName'), {
     id: ATTR_ID,
     value: {
-      meta: {
-        name: 'strName'
-      }
+      name: 'strName'
     }
   }, 'should create customentity attribute by entity name #2');
 
