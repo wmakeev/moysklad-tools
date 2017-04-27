@@ -5,6 +5,21 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "${file}",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "node",
+      "program": "${file}",
+      "cwd": "${workspaceRoot}",
+      "runtimeArgs": [
+        "--harmony",
+        "--require",
+        "dotenv/config",
+        "--require",
+        "isomorphic-fetch"
+      ]
+    },
+    {
       "name": "index.test",
       "type": "node2",
       "request": "launch",
