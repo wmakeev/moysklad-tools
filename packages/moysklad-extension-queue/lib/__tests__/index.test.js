@@ -1,6 +1,9 @@
 'use strict';
 
 // const fs = require('fs')
+// const tmp = require('tmp')
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
@@ -13,7 +16,7 @@ const sleep = require('moysklad/tools/sleep');
 const QueueStamp = require('..');
 const ExtendedMoysklad = Moysklad.compose(QueueStamp);
 
-let products = require('./products');
+let products; // = require('./products')
 
 test('Moysklad queue', (() => {
   var _ref = _asyncToGenerator(function* (t) {
@@ -36,13 +39,10 @@ test('Moysklad queue', (() => {
       emitter: emitter
     });
 
-    // debug(`Получаем идентификаторы ${tasksPerPeriod * 2} товаров ...`)
-    // products = [
-    //   ...(await ms.GET('entity/product', { limit: tasksPerPeriod })).rows,
-    //   ...(await ms.GET('entity/product', { offset: tasksPerPeriod, limit: tasksPerPeriod })).rows]
+    debug(`Получаем идентификаторы ${tasksPerPeriod * 2} товаров ...`);
+    products = [].concat(_toConsumableArray((yield ms.GET('entity/product', { limit: tasksPerPeriod })).rows), _toConsumableArray((yield ms.GET('entity/product', { offset: tasksPerPeriod, limit: tasksPerPeriod })).rows));
 
-    // fs.writeFileSync(
-    //   '/Users/mvv/Documents/GitHub/moysklad/src/extensions/queue/__tests__/products.json',
+    // fs.writeFileSync(tmp.tmpNameSync(),
     //   JSON.stringify(products.map(p => ({ id: p.id, name: p.name }))))
 
     let startTime = Date.now();
@@ -91,7 +91,7 @@ test('Moysklad queue', (() => {
     try {
       results = yield Promise.all(results);
     } finally {
-      // fs.writeFileSync('/Users/mvv/Documents/GitHub/moysklad/_temp/queue.js',
+      // fs.writeFileSync(tmp.tmpNameSync(),
       //   'var data = ' + JSON.stringify(report, null, 2))
     }
 
