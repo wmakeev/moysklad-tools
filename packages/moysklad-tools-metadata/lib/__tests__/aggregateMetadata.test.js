@@ -21,7 +21,7 @@ test('aggregateMetadata', (() => {
     let moysklad = Moysklad({ queue: true });
     let metadata = yield aggregateMetadata(moysklad, model, {
       customEntityFilter: function customEntityFilter(entName) {
-        return !['Бренды', 'Города'].includes(entName);
+        return !['Города'].includes(entName);
       }
     });
 
