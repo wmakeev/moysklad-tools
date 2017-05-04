@@ -120,3 +120,30 @@ test('tools.loadRows returns from expanded collection and load others pages (wit
   })
 
 // TODO проверить результат по заранее полученной эталонной коллекции
+
+test('tools.loadRows (with array filter)', async t => {
+  const LIMIT = 10
+  const OFFSET = 0
+  const codes = [
+    '15306', '15307', '15312', '15316', '15319', '15320', '15348', '15362', '15567',
+    '15568', '15570', '15571', '15581', '15584', '15586', '16148', '16152', '16163',
+    '16169', '16170', '16181', '16182', '16185', '16189', '16192', '16208', '16211',
+    '16228', '16238', '16239', '16243', '16847', '16855', '22467'
+  ]
+  const ms = Moysklad()
+
+  let productsCollection = await ms.GET('entity/product', {
+    filter: {
+      code: codes
+    }
+  })
+  let rows = await loadRows(ms, productsCollection, {
+    offset: OFFSET, limit: LIMIT
+  })
+
+  t.true(rows instanceof Array, 'should return positions array')
+
+  t.equals(rows.length, codes.length, `should return ${codes.length} products`)
+
+  t.ok(rows.every(p => codes.find(c => c === p.code)), `should return requested products`)
+})
