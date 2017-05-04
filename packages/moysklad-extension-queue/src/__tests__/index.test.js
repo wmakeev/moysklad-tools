@@ -1,6 +1,7 @@
 'use strict'
 
 // const fs = require('fs')
+// const tmp = require('tmp')
 const EventEmitter = require('events')
 const debug = require('debug')('moysklad-extension-queue')
 const test = require('blue-tape')
@@ -10,7 +11,7 @@ const sleep = require('moysklad/tools/sleep')
 const QueueStamp = require('..')
 const ExtendedMoysklad = Moysklad.compose(QueueStamp)
 
-let products = require('./products')
+let products // = require('./products')
 
 test('Moysklad queue', async t => {
   const period = 5500
@@ -32,13 +33,12 @@ test('Moysklad queue', async t => {
     emitter
   })
 
-  // debug(`Получаем идентификаторы ${tasksPerPeriod * 2} товаров ...`)
-  // products = [
-  //   ...(await ms.GET('entity/product', { limit: tasksPerPeriod })).rows,
-  //   ...(await ms.GET('entity/product', { offset: tasksPerPeriod, limit: tasksPerPeriod })).rows]
+  debug(`Получаем идентификаторы ${tasksPerPeriod * 2} товаров ...`)
+  products = [
+    ...(await ms.GET('entity/product', { limit: tasksPerPeriod })).rows,
+    ...(await ms.GET('entity/product', { offset: tasksPerPeriod, limit: tasksPerPeriod })).rows]
 
-  // fs.writeFileSync(
-  //   '/Users/mvv/Documents/GitHub/moysklad/src/extensions/queue/__tests__/products.json',
+  // fs.writeFileSync(tmp.tmpNameSync(),
   //   JSON.stringify(products.map(p => ({ id: p.id, name: p.name }))))
 
   let startTime = Date.now()
@@ -77,7 +77,7 @@ test('Moysklad queue', async t => {
   try {
     results = await Promise.all(results)
   } finally {
-    // fs.writeFileSync('/Users/mvv/Documents/GitHub/moysklad/_temp/queue.js',
+    // fs.writeFileSync(tmp.tmpNameSync(),
     //   'var data = ' + JSON.stringify(report, null, 2))
   }
 
