@@ -1,6 +1,6 @@
 'use strict'
 
-const compose = require('stampit/compose')
+const compose = require('@stamp/compose')
 
 module.exports = compose(
   require('./createAttr'),
