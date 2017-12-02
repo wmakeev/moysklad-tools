@@ -75,7 +75,7 @@ const moysklad = Moysklad({
 `tasksPerPeriod` | 100 | 100 | максимальное кол-во запросов за период `period`
 `parallelTasks` | 50 | 50 | максимальное кол-во параллельных запросов
 
-[Официальная информация по лимитам](https://youtu.be/k2o-IFe0L9s?t=8m55s)
+[Официальная информация по лимитам](https://online.moysklad.ru/api/remap/1.1/doc/#header-ограничения)
 
 
 

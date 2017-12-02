@@ -54,8 +54,8 @@ test('Moysklad queue', (() => {
     emitter.on('request:start', function (_ref2) {
       let uri = _ref2.uri;
 
-      let parsedUri = ms.parseUri(uri);
-      let id = parsedUri.path[2];
+      let parsedUrl = ms.parseUrl(uri);
+      let id = parsedUrl.path[2];
       let reportItem = report.find(function (i) {
         return i.id === id;
       });
@@ -65,8 +65,8 @@ test('Moysklad queue', (() => {
     emitter.on('response:body', function (_ref3) {
       let uri = _ref3.uri;
 
-      let parsedUri = ms.parseUri(uri);
-      let id = parsedUri.path[2];
+      let parsedUrl = ms.parseUrl(uri);
+      let id = parsedUrl.path[2];
       let reportItem = report.find(function (i) {
         return i.id === id;
       });

@@ -6,11 +6,11 @@ const Queue = require('./queue');
 let globalQueuePull = new Map();
 
 module.exports = stampit().init(function (options) {
-  let login, fetchUri;
+  let login, fetchUrl;
 
-  function fetchUriWithQueue() {
+  function fetchUrlWithQueue() {
     let requestTask = () => {
-      return fetchUri.apply(this, arguments);
+      return fetchUrl.apply(this, arguments);
     };
 
     /** @type {Queue} */
@@ -26,7 +26,7 @@ module.exports = stampit().init(function (options) {
 
   if (options.queue) {
     login = options.login ? options.login : null;
-    fetchUri = this.fetchUri;
-    this.fetchUri = fetchUriWithQueue;
+    fetchUrl = this.fetchUrl;
+    this.fetchUrl = fetchUrlWithQueue;
   }
 });

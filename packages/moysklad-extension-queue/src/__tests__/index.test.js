@@ -48,15 +48,15 @@ test('Moysklad queue', async t => {
   t.comment('should queue requests to avoid 429 error')
 
   emitter.on('request:start', ({ uri }) => {
-    let parsedUri = ms.parseUri(uri)
-    let id = parsedUri.path[2]
+    let parsedUrl = ms.parseUrl(uri)
+    let id = parsedUrl.path[2]
     let reportItem = report.find(i => i.id === id)
     reportItem.started = Date.now() - startTime
   })
 
   emitter.on('response:body', ({ uri }) => {
-    let parsedUri = ms.parseUri(uri)
-    let id = parsedUri.path[2]
+    let parsedUrl = ms.parseUrl(uri)
+    let id = parsedUrl.path[2]
     let reportItem = report.find(i => i.id === id)
     reportItem.processed = Date.now() - startTime
   })

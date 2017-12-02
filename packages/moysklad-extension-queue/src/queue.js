@@ -132,12 +132,13 @@ class Queue {
         this.processTask()
         curAction.cb(err, data)
       })
-    } else {
-      this._tasksInProgress < this.parallelTasks
-      // debug(`Skip processTask: tasksInProgress - ${this._tasksInProgress} | ` +
-      //   `timeline - ${JSON.stringify(this._timeline)} | ` +
-      //   `actionsQueue - ${this._actionsQueue.length}`)
     }
+    // else {
+    //   this._tasksInProgress < this.parallelTasks
+    //   debug(`Skip processTask: tasksInProgress - ${this._tasksInProgress} | ` +
+    //     `timeline - ${JSON.stringify(this._timeline)} | ` +
+    //     `actionsQueue - ${this._actionsQueue.length}`)
+    // }
   }
 }
 
