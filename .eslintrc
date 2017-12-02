@@ -18,6 +18,7 @@
         "cb", "done", "resolve", "reject"
       ]
     }],
+    "no-unused-expressions": "error",
     "no-use-before-define": ["error", { "functions": true, "classes": true }],
     "no-inner-declarations": [2, "both"],
     "vars-on-top": 2

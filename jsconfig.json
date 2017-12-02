@@ -1,0 +1,14 @@
+{
+  // Документацию о формате jsconfig.json см. в статье https://go.microsoft.com/fwlink/?LinkId=759670
+  //
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "checkJs": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "packages/*/src/**/*",
+    "packages/*/*.js"
+  ]
+}

@@ -5,10 +5,9 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "${file}",
       "type": "node",
       "request": "launch",
-      "runtimeExecutable": "node",
+      "name": "${file}",
       "program": "${file}",
       "cwd": "${workspaceRoot}",
       "runtimeArgs": [
@@ -17,13 +16,13 @@
         "dotenv/config",
         "--require",
         "isomorphic-fetch"
-      ]
+      ],
+      "internalConsoleOptions": "openOnSessionStart"
     },
     {
-      "name": "index.test",
-      "type": "node2",
+      "type": "node",
       "request": "launch",
-      "runtimeExecutable": "node",
+      "name": "index.test",
       "program": "${workspaceRoot}/tests/index.test.js",
       "cwd": "${workspaceRoot}",
       "runtimeArgs": [
@@ -41,10 +40,9 @@
       "program": "/Users/mvv/Documents/GitHub/moysklad-tools/packages/moysklad-extension-tools/index.test.js"
     },
     {
-      "name": "src/{some}.test",
-      "type": "node2",
+      "type": "node",
       "request": "launch",
-      "runtimeExecutable": "node",
+      "name": "src/{some}.test",
       "program": "/Users/mvv/Documents/GitHub/moysklad-tools/packages/moysklad-tools-metadata/src/__tests__/aggregateMetadata.test.js",
       "cwd": "${workspaceRoot}",
       "runtimeArgs": [
@@ -56,10 +54,9 @@
       ]
     },
     {
-      "name": "lib/{some}.test",
       "type": "node",
       "request": "launch",
-      "runtimeExecutable": "node",
+      "name": "lib/{some}.test",
       "program": "/Users/mvv/Documents/GitHub/moysklad-tools/packages/moysklad-tools/lib/__tests__/loadRows.test.js",
       "cwd": "${workspaceRoot}",
       "runtimeArgs": [

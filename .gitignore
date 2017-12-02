@@ -1,6 +1,7 @@
 # Loacal temp files
 _temp*
-_old
+__temp
+__old
 
 # IDE
 .idea
@@ -9,6 +10,7 @@ _old
 
 # Env
 .env
+packages/*/package-lock.json
 
 # Dependency directories
 node_modules
