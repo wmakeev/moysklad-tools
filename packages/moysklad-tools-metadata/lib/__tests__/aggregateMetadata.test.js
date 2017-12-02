@@ -11,6 +11,8 @@ const model = require('../../res/json-api-model');
 const QueueExtension = require('moysklad-extension-queue');
 const Moysklad = require('moysklad').compose(QueueExtension);
 
+const IS_DEV = process.env.ENV === 'development';
+
 test('aggregateMetadata is ok', t => {
   t.equals(typeof aggregateMetadata, 'function');
   t.end();
@@ -26,7 +28,10 @@ test('aggregateMetadata', (() => {
     });
 
     t.ok(metadata, 'should return metadata');
-    fs.writeFileSync(path.resolve('_temp/aggregatedMetadata.json'), JSON.stringify(metadata, null, 2));
+
+    if (IS_DEV) {
+      fs.writeFileSync(path.resolve('_temp/aggregatedMetadata.json'), JSON.stringify(metadata, null, 2));
+    }
   });
 
   return function (_x) {
