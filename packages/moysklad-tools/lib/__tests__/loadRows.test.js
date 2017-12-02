@@ -193,3 +193,25 @@ test('tools.loadRows (with array filter)', (() => {
     return _ref7.apply(this, arguments);
   };
 })());
+
+test('tools.loadRows (on empty collection)', (() => {
+  var _ref8 = _asyncToGenerator(function* (t) {
+    const ms = Moysklad();
+
+    let productsCollection = yield ms.GET('entity/product', {
+      filter: {
+        id: '75d84846-9df0-11e3-c99e-002590a28eca'
+      }
+    });
+
+    let rows = yield loadRows(ms, productsCollection);
+
+    t.true(rows instanceof Array, 'should return array');
+
+    t.equals(rows.length, 0, `should return empty array`);
+  });
+
+  return function (_x8) {
+    return _ref8.apply(this, arguments);
+  };
+})());

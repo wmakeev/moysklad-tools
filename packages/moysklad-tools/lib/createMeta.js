@@ -15,7 +15,7 @@ module.exports = function createMeta() {
 
 
   return {
-    href: client.buildUri(path),
+    href: client.buildUrl(path),
     type: type,
     mediaType: 'application/json'
   };

@@ -147,3 +147,19 @@ test('tools.loadRows (with array filter)', async t => {
 
   t.ok(rows.every(p => codes.find(c => c === p.code)), `should return requested products`)
 })
+
+test('tools.loadRows (on empty collection)', async t => {
+  const ms = Moysklad()
+
+  let productsCollection = await ms.GET('entity/product', {
+    filter: {
+      id: '75d84846-9df0-11e3-c99e-002590a28eca'
+    }
+  })
+
+  let rows = await loadRows(ms, productsCollection)
+
+  t.true(rows instanceof Array, 'should return array')
+
+  t.equals(rows.length, 0, `should return empty array`)
+})

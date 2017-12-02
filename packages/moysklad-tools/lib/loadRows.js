@@ -1,5 +1,7 @@
 'use strict';
 
+// @ts-ignore
+
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 const have = require('have2').with({
@@ -14,12 +16,16 @@ module.exports = (() => {
         collection = _have$strict.collection;
     var _have$strict$query = _have$strict.query;
     let query = _have$strict$query === undefined ? {} : _have$strict$query;
+
+    // TODO коллекция может быть без полей size, limit, offset
+    // (для коллекций созданных вручную)
+
     var _collection$meta = collection.meta;
     let size = _collection$meta.size,
         limit = _collection$meta.limit,
         offset = _collection$meta.offset;
 
-    let href = client.parseUri(collection.meta.href);
+    let href = client.parseUrl(collection.meta.href);
     let rowsPages = [];
 
     if (collection.rows && collection.rows.length) {

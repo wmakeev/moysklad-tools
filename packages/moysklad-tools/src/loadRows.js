@@ -1,5 +1,6 @@
 'use strict'
 
+// @ts-ignore
 const have = require('have2').with({
   collection: require('moysklad-type-matchers/types/collection')
 })
@@ -10,8 +11,10 @@ module.exports = async function loadRows () {
     have.argumentsObject
   ])
 
+  // TODO коллекция может быть без полей size, limit, offset
+  // (для коллекций созданных вручную)
   let { size, limit, offset } = collection.meta
-  let href = client.parseUri(collection.meta.href)
+  let href = client.parseUrl(collection.meta.href)
   let rowsPages = []
 
   if (collection.rows && collection.rows.length) {

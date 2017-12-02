@@ -16,11 +16,10 @@ let entity = {
     id: 'f4c073c5-1bcc-4d91-8b41-ed825495b672',
     value: 'bar'
   }]
-};
 
-// TODO Дополнить тесты
+  // TODO Дополнить тесты
 
-test('tools.getAttr', t => {
+};test('tools.getAttr', t => {
   t.equals(typeof getAttr, 'function');
   t.equal(getAttr(entity, entity.attributes[0].id), entity.attributes[0], 'should return attribute object');
   t.end();

@@ -9,7 +9,7 @@ module.exports = function createMeta (...args) {
   ])
 
   return {
-    href: client.buildUri(path),
+    href: client.buildUrl(path),
     type,
     mediaType: 'application/json'
   }
