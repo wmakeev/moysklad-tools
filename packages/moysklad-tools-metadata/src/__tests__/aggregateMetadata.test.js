@@ -17,7 +17,7 @@ test('aggregateMetadata is ok', t => {
 test('aggregateMetadata', async t => {
   let moysklad = Moysklad({ queue: true })
   let metadata = await aggregateMetadata(moysklad, model, {
-    customEntityFilter: entName => !['Города'].includes(entName)
+    customEntityFilter: entName => ['Города'].indexOf(entName) === -1
   })
 
   t.ok(metadata, 'should return metadata')
