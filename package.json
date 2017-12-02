@@ -3,13 +3,15 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist",
+    "lint": "lerna run lint",
     "test": "lerna run test",
+    "build": "lerna run build",
     "publish": "lerna publish",
-    "moysklad-extension-queue-test": "lerna run test --scope moysklad-extension-queue",
-    "moysklad-extension-tools-test": "lerna run test --scope moysklad-extension-tools",
-    "moysklad-tools-test": "lerna run test --scope moysklad-tools",
-    "moysklad-tools-metadata-test": "lerna run test --scope moysklad-tools-metadata",
-    "moysklad-type-matchers-test": "lerna run test --scope moysklad-type-matchers"
+    "moysklad-extension-queue-build": "lerna run build --scope moysklad-extension-queue",
+    "moysklad-extension-tools-build": "lerna run build --scope moysklad-extension-tools",
+    "moysklad-tools-build": "lerna run build --scope moysklad-tools",
+    "moysklad-tools-metadata-build": "lerna run build --scope moysklad-tools-metadata",
+    "moysklad-type-matchers-build": "lerna run build --scope moysklad-type-matchers"
   },
   "engines": {
     "node": ">=4"
