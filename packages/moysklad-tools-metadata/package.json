@@ -1,6 +1,6 @@
 {
   "name": "moysklad-tools-metadata",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Инструменты для работы с метаданными МойСклад",
   "main": "lib/index.js",
   "scripts": {
@@ -24,8 +24,8 @@
   "author": "Vitaliy V. Makeev",
   "dependencies": {
     "moysklad": "^0.3.1",
-    "moysklad-extension-queue": "^0.1.0",
-    "moysklad-tools": "^0.1.1"
+    "moysklad-extension-queue": "^0.1.1",
+    "moysklad-tools": "^0.1.2"
   },
   "license": "MIT"
 }

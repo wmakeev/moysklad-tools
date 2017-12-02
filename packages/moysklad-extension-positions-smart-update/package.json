@@ -1,6 +1,6 @@
 {
   "name": "moysklad-extension-positions-smart-update",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Оптимизация обновлений документов с позициями (расширение для библиотеки moysklad)",
   "main": "lib/index.js",
   "scripts": {
@@ -20,12 +20,12 @@
     "extension"
   ],
   "dependencies": {
-    "stampit": "^4.0.2",
     "lodash.chunk": "^4.2.0",
     "lodash.get": "^4.4.2",
     "lodash.partition": "^4.6.0",
-    "moysklad-tools": "^0.1.1",
-    "moysklad-type-matchers":"^0.0.2"
+    "moysklad-tools": "^0.1.2",
+    "moysklad-type-matchers": "^0.1.0",
+    "stampit": "^4.0.2"
   },
   "author": "Vitaliy V. Makeev",
   "license": "MIT"
