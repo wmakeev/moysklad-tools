@@ -31,10 +31,9 @@ module.exports = (() => {
       CustomEntity: {},
       updated: new Date(),
       formatVersion: '3.0.0'
-    };
 
-    // асинхронная загрузка метаданных внешних (доступных из API) сущностей
-    let typeMetadataPromises = Object.keys(model.types).filter(function (typeName) {
+      // асинхронная загрузка метаданных внешних (доступных из API) сущностей
+    };let typeMetadataPromises = Object.keys(model.types).filter(function (typeName) {
       let type = model.types[typeName];
       return type && type.external && getPropertyInfo(model, typeName, 'attributes');
     }).map(function (typeName) {
@@ -76,13 +75,13 @@ module.exports = (() => {
               // Metadata.CustomerOrder.Attributes.ИСТОЧНИК_ЗАКАЗА = attribute.id
               type.Attributes[getFieldName(attrMeta.name)] = attrMeta.id;
               if (attrMeta.customEntityMeta) {
-                let customEntities = yield client.fetchUri(attrMeta.customEntityMeta.href);
+                let customEntities = yield client.fetchUrl(attrMeta.customEntityMeta.href);
                 let entName = getFieldName(customEntities.name);
                 // заполнение пользовательского справочника (если не заполнен) и если не пропущен явно
                 if (!Metadata.CustomEntity[entName] && customEntityFilter(customEntities.name)) {
                   // Metadata.CustomEntity.ИСТОЧНИКИ_ЗАКАЗА = {}
                   Metadata.CustomEntity[entName] = {};
-                  let collection = yield client.fetchUri(customEntities.entityMeta.href);
+                  let collection = yield client.fetchUrl(customEntities.entityMeta.href);
                   let rows = yield loadRows(client, collection, { limit: 100 });
                   rows.reduce(function (res, row) {
                     let match = CUSTOM_ENT_ID_REGEX.exec(row.meta.href);

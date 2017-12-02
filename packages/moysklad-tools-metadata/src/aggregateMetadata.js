@@ -64,13 +64,13 @@ module.exports = async function aggregateMetadata () {
         // Metadata.CustomerOrder.Attributes.ИСТОЧНИК_ЗАКАЗА = attribute.id
         type.Attributes[getFieldName(attrMeta.name)] = attrMeta.id
         if (attrMeta.customEntityMeta) {
-          let customEntities = await client.fetchUri(attrMeta.customEntityMeta.href)
+          let customEntities = await client.fetchUrl(attrMeta.customEntityMeta.href)
           let entName = getFieldName(customEntities.name)
           // заполнение пользовательского справочника (если не заполнен) и если не пропущен явно
           if (!Metadata.CustomEntity[entName] && customEntityFilter(customEntities.name)) {
             // Metadata.CustomEntity.ИСТОЧНИКИ_ЗАКАЗА = {}
             Metadata.CustomEntity[entName] = {}
-            let collection = await client.fetchUri(customEntities.entityMeta.href)
+            let collection = await client.fetchUrl(customEntities.entityMeta.href)
             let rows = await loadRows(client, collection, { limit: 100 })
             rows.reduce((res, row) => {
               let match = CUSTOM_ENT_ID_REGEX.exec(row.meta.href)

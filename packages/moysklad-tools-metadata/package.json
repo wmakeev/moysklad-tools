@@ -22,23 +22,9 @@
   ],
   "author": "Vitaliy V. Makeev",
   "dependencies": {
-    "moysklad": "^0.1.0",
+    "moysklad": "^0.3.1",
     "moysklad-extension-queue": "^0.1.0",
     "moysklad-tools": "^0.1.1"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.24.0",
-    "babel-plugin-transform-async-to-generator": "^6.22.0",
-    "babel-preset-es2015-node4": "^2.1.1",
-    "blue-tape": "^1.0.0",
-    "debug": "^2.6.3",
-    "dotenv": "^4.0.0",
-    "eslint": "^3.13.0",
-    "eslint-config-standard": "6.2.0",
-    "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-standard": "^2.0.1",
-    "isomorphic-fetch": "^2.2.1",
-    "tap-spec": "^4.1.1"
   },
   "license": "MIT"
 }
