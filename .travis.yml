@@ -1,7 +1,9 @@
 language: node_js
 node_js:
-  - '4'
-#  - '6'
-script:
+  - '4.2'
+#  - '6.10'
+install:
+  - npm install
   - lerna bootstrap --hoist
+script:
   - lerna run test
