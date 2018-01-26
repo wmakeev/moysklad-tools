@@ -14,6 +14,8 @@ const INVALID_UUIDS = [
   '',
   'eb7bcc22-ae8d-11e3-9e32*002590a28eca',
   'eb7bcc22-ae8d-11e3-9e32-0*2590a28eca',
+  'https://online.moysklad.ru/api/remap/1.1/entity/product/metadata/attributes/' +
+    'f4c073c5-1bcc-4d91-8b41-ed825495b672',
   {},
   []
 ]
