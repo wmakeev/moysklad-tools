@@ -6,8 +6,6 @@ const have = require('./have');
 const getPropertyInfo = require('./getPropertyInfo');
 const loadRows = require('moysklad-tools/loadRows');
 
-const CUSTOM_ENT_ID_REGEX = /\/([^/]+)\/([^/?]+)(?:\?.+)?$/;
-
 const getFieldName = fieldName => fieldName.toUpperCase().replace(/[^0-9a-zA-Zа-яА-Я_$]/g, '_').replace(/_{2,}/g, '_').replace(/_{1,}$/, '') // TODO Объединить последние два replace
 .replace(/^_{1,}/, '');
 
@@ -30,7 +28,7 @@ module.exports = (() => {
     let Metadata = {
       CustomEntity: {},
       updated: new Date(),
-      formatVersion: '3.0.0'
+      formatVersion: '4.0.0'
 
       // асинхронная загрузка метаданных внешних (доступных из API) сущностей
     };let typeMetadataPromises = Object.keys(model.types).filter(function (typeName) {
@@ -62,8 +60,8 @@ module.exports = (() => {
             type.States = {};
             // обработка метаданных сущности
             for (let attrState of metadata.states) {
-              // Metadata.CustomerOrder.States.ОФОРМЛЕН = state.id
-              type.States[getFieldName(attrState.name)] = attrState.id;
+              // Metadata.CustomerOrder.States.ОФОРМЛЕН = state.meta.href
+              type.States[getFieldName(attrState.name)] = attrState.meta.href;
             }
           }
 
@@ -72,8 +70,8 @@ module.exports = (() => {
             type.Attributes = {};
             // обработка метаданных сущности
             for (let attrMeta of metadata.attributes) {
-              // Metadata.CustomerOrder.Attributes.ИСТОЧНИК_ЗАКАЗА = attribute.id
-              type.Attributes[getFieldName(attrMeta.name)] = attrMeta.id;
+              // Metadata.CustomerOrder.Attributes.ИСТОЧНИК_ЗАКАЗА = attribute.meta.href
+              type.Attributes[getFieldName(attrMeta.name)] = attrMeta.meta.href;
               if (attrMeta.customEntityMeta) {
                 let customEntities = yield client.fetchUrl(attrMeta.customEntityMeta.href);
                 let entName = getFieldName(customEntities.name);
@@ -84,9 +82,8 @@ module.exports = (() => {
                   let collection = yield client.fetchUrl(customEntities.entityMeta.href);
                   let rows = yield loadRows(client, collection, { limit: 100 });
                   rows.reduce(function (res, row) {
-                    let match = CUSTOM_ENT_ID_REGEX.exec(row.meta.href);
-                    // Metadata.CustomEntity.ИСТОЧНИКИ_ЗАКАЗА.САЙТ = '{id}/{id}'
-                    res[getFieldName(row.name)] = `${match[1]}/${match[2]}`;
+                    // Metadata.CustomEntity.ИСТОЧНИКИ_ЗАКАЗА.САЙТ = entity.meta.href
+                    res[getFieldName(row.name)] = row.meta.href;
                     return res;
                   }, Metadata.CustomEntity[entName]);
                 }
