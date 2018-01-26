@@ -1,6 +1,6 @@
 {
   "name": "moysklad-extension-tools",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Набор инструментов (расширение для библиотеки moysklad)",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
   ],
   "dependencies": {
     "@stamp/compose": "^1.0.1",
-    "moysklad-tools": "^0.1.2",
+    "moysklad-tools": "^0.2.0",
     "stampit": "^4.0.2"
   },
   "author": "Vitaliy V. Makeev",
