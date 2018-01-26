@@ -1,6 +1,6 @@
 {
   "name": "moysklad-tools-metadata",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Инструменты для работы с метаданными МойСклад",
   "main": "lib/index.js",
   "scripts": {
