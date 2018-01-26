@@ -17,9 +17,9 @@ test('Queue is ok', t => {
 test('Queue instance', t => {
   let queue = new Queue();
   t.ok(queue, 'should be truthy');
-  t.equals(queue.period, 5500, 'should have `period` property default to 5500');
+  t.equals(queue.period, 5200, 'should have `period` property default to 5200');
   t.equals(queue.tasksPerPeriod, 100, 'should have `tasksPerPeriod` property default to 100');
-  t.equals(queue.parallelTasks, 50, 'should have `parallelTasks` property default to 50');
+  t.equals(queue.parallelTasks, 5, 'should have `parallelTasks` property default to 5');
   t.equals(typeof queue.processTask, 'function', 'should have `processTask` method');
   t.end();
 });
@@ -46,7 +46,6 @@ test('Queue#processTask (simple)', (() => {
   };
 })());
 
-// https://docs.google.com/spreadsheets/d/1GX4OaolG_AmZ-NbUKI9XcDhewV-jFLCn29WWn-thEf0/edit
 test('Queue#processTask (complex)', (() => {
   var _ref3 = _asyncToGenerator(function* (t) {
     const CONSTRAINT_PERIOD = 100;

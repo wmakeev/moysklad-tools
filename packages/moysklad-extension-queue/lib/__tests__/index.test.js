@@ -20,7 +20,7 @@ let products; // = require('./products')
 
 test('Moysklad queue', (() => {
   var _ref = _asyncToGenerator(function* (t) {
-    const period = 5500;
+    const period = 5200;
     const tasksPerPeriod = 100;
     // const parallelTasks = 50
 
@@ -51,7 +51,7 @@ test('Moysklad queue', (() => {
 
     t.comment('should queue requests to avoid 429 error');
 
-    emitter.on('request:start', function (_ref2) {
+    emitter.on('request', function (_ref2) {
       let uri = _ref2.uri;
 
       let parsedUrl = ms.parseUrl(uri);
@@ -91,8 +91,10 @@ test('Moysklad queue', (() => {
     try {
       results = yield Promise.all(results);
     } finally {
-      // fs.writeFileSync(tmp.tmpNameSync(),
-      //   'var data = ' + JSON.stringify(report, null, 2))
+      // https://docs.google.com/spreadsheets/d/1GX4OaolG_AmZ-NbUKI9XcDhewV-jFLCn29WWn-thEf0/edit
+      // let tmpFileName = tmp.tmpNameSync()
+      // console.log(tmpFileName)
+      // fs.writeFileSync(tmpFileName, 'var data = ' + JSON.stringify(report, null, 2))
     }
 
     t.ok(results.every(function (r, index) {

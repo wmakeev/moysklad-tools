@@ -4,6 +4,8 @@
 
 const have = require('have2');
 const sleep = require('moysklad/tools/sleep');
+const defaultNum = require('./defaultNum');
+const getEnvOrDefault = require('./getEnvOrDefault');
 
 class Action {
   /**
@@ -33,14 +35,14 @@ class Queue {
       parallelTasks: 'opt num'
     });
 
-    // https://youtu.be/k2o-IFe0L9s?t=8m55s
-    // Опытным путем проверено что period лучше для надежности немного увеличить
+    // https://goo.gl/4NBeia
+    // По опыту period лучше для надежности сделать немного больше чем оф. значение
     var _options$period = options.period;
-    let period = _options$period === undefined ? 5500 : _options$period;
+    let period = _options$period === undefined ? getEnvOrDefault('MOYSKLAD_QUEUE_PERIOD_MS', defaultNum(5200)) : _options$period;
     var _options$tasksPerPeri = options.tasksPerPeriod;
-    let tasksPerPeriod = _options$tasksPerPeri === undefined ? 100 : _options$tasksPerPeri;
+    let tasksPerPeriod = _options$tasksPerPeri === undefined ? getEnvOrDefault('MOYSKLAD_QUEUE_PERIOD_TASKS', defaultNum(100)) : _options$tasksPerPeri;
     var _options$parallelTask = options.parallelTasks;
-    let parallelTasks = _options$parallelTask === undefined ? 50 : _options$parallelTask;
+    let parallelTasks = _options$parallelTask === undefined ? getEnvOrDefault('MOYSKLAD_QUEUE_PARALLEL_TASKS', defaultNum(5)) : _options$parallelTask;
 
     /** @type {number} Период на который накладывается ограничение по кол-ву задач (мс) */
 
@@ -82,7 +84,7 @@ class Queue {
       let taskResult = new Promise((resolve, reject) => {
         this._actionsQueue.push(new Action(++this._lastTaskId, task, (err, result) => err ? reject(err) : resolve(result)));
       });
-      this.processTask();
+      this.processTask(null);
       return taskResult;
     }
 
@@ -108,7 +110,7 @@ class Queue {
         // debug(`tasksInProgress - ${this._tasksInProgress} | waitTime ${waitTime}`)
         sleep(waitTime).then(() => {
           // debug(`call processTask after waitTime - ${waitTime}`)
-          this.processTask();
+          this.processTask(null);
         });
         return;
       }
@@ -131,7 +133,7 @@ class Queue {
         //   `actionsQueue - ${this._actionsQueue.length}`)
 
         // this._timeline.push(Date.now())
-        this.processTask();
+        this.processTask(null);
         curAction.cb(err, data);
       });
     }

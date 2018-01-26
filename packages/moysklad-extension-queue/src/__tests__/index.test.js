@@ -14,7 +14,7 @@ const ExtendedMoysklad = Moysklad.compose(QueueStamp)
 let products // = require('./products')
 
 test('Moysklad queue', async t => {
-  const period = 5500
+  const period = 5200
   const tasksPerPeriod = 100
   // const parallelTasks = 50
 
@@ -47,7 +47,7 @@ test('Moysklad queue', async t => {
 
   t.comment('should queue requests to avoid 429 error')
 
-  emitter.on('request:start', ({ uri }) => {
+  emitter.on('request', ({ uri }) => {
     let parsedUrl = ms.parseUrl(uri)
     let id = parsedUrl.path[2]
     let reportItem = report.find(i => i.id === id)
@@ -77,8 +77,10 @@ test('Moysklad queue', async t => {
   try {
     results = await Promise.all(results)
   } finally {
-    // fs.writeFileSync(tmp.tmpNameSync(),
-    //   'var data = ' + JSON.stringify(report, null, 2))
+    // https://docs.google.com/spreadsheets/d/1GX4OaolG_AmZ-NbUKI9XcDhewV-jFLCn29WWn-thEf0/edit
+    // let tmpFileName = tmp.tmpNameSync()
+    // console.log(tmpFileName)
+    // fs.writeFileSync(tmpFileName, 'var data = ' + JSON.stringify(report, null, 2))
   }
 
   t.ok(results.every((r, index) => r === products[index].name))
