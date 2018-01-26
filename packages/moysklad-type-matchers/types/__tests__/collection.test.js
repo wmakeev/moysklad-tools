@@ -3,24 +3,24 @@
 const test = require('blue-tape')
 const collection = require('../collection')
 
-const COLLECTION = [
+const VALID_COLLECTIONS = [
   {
     meta: {
-      href: 'href',
+      href: 'https://href',
       type: 'collection',
       size: 0
     }
   },
   {
     meta: {
-      href: 'href',
+      href: 'https://href',
       type: 'collection',
       size: 1
     }
   },
   {
     meta: {
-      href: 'href',
+      href: 'https://href',
       type: 'collection',
       size: 1
     },
@@ -28,21 +28,24 @@ const COLLECTION = [
   },
   {
     meta: {
-      href: 'href',
+      href: 'https://href',
       type: 'collection'
     },
     rows: [{}]
   },
   {
     meta: {
-      href: 'href',
+      href: 'https://href',
       type: 'collection'
     },
+    rows: []
+  },
+  {
     rows: []
   }
 ]
 
-const NOT_COLLECTION = [
+const INVALID_COLLECTIONS = [
   null,
   void 0,
   0,
@@ -62,13 +65,14 @@ const NOT_COLLECTION = [
 test('collection matcher', t => {
   t.ok(collection, 'is ok')
 
-  COLLECTION.forEach(coll => {
-    t.true(collection(coll), 'should return true for collection like object')
+  VALID_COLLECTIONS.forEach(valid => {
+    t.equal(collection(valid), true, `should return true for collection like object - ` +
+      JSON.stringify(valid))
   })
 
-  NOT_COLLECTION.forEach(notCollection => {
-    t.false(collection(notCollection),
-      `should return false for not collection like - ${JSON.stringify(notCollection)}`)
+  INVALID_COLLECTIONS.forEach(invalid => {
+    t.equal(collection(invalid), false,
+      `should return false for not collection - ${JSON.stringify(invalid)}`)
   })
 
   t.end()
