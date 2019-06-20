@@ -110,7 +110,7 @@ let attrValueName = getAttrMaybe(entity, entity.attributes[0].id)
 
 `tools.getAttrVal(entity: Object, ref: String) : Object`
 
-### #createMeta
+### [deprecated] #createMeta
 
 Создание структуры `meta`
 
@@ -126,7 +126,7 @@ assert.deepEqual(meta, {
 })
 ```
 
-### #createAttr
+### [deprecated] #createAttr
 
 Создание структуры пользовательского поля c типом справочник
 
