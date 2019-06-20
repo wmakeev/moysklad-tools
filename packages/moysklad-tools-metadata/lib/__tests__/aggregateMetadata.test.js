@@ -23,14 +23,14 @@ test('aggregateMetadata', (() => {
     let moysklad = Moysklad({ queue: true });
     let metadata = yield aggregateMetadata(moysklad, model, {
       customEntityFilter: function customEntityFilter(entName) {
-        return ['Города'].indexOf(entName) === -1;
+        return ['Города', 'Пункты доставки', 'Бренды', 'Вид товара', 'Приход и расход'].indexOf(entName) === -1;
       }
     });
 
     t.ok(metadata, 'should return metadata');
 
     if (IS_DEV) {
-      fs.writeFileSync(path.resolve('_temp/aggregatedMetadata.json'), JSON.stringify(metadata, null, 2));
+      fs.writeFileSync(path.resolve('__temp/aggregatedMetadata.json'), JSON.stringify(metadata, null, 2));
     }
   });
 

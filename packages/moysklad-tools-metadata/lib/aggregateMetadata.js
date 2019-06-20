@@ -9,6 +9,16 @@ const loadRows = require('moysklad-tools/loadRows');
 const getFieldName = fieldName => fieldName.toUpperCase().replace(/[^0-9a-zA-Zа-яА-Я_$]/g, '_').replace(/_{2,}/g, '_').replace(/_{1,}$/, '') // TODO Объединить последние два replace
 .replace(/^_{1,}/, '');
 
+const removeHrefHostAndVersion = ms => {
+  const opt = ms.getOptions();
+  const head = `${opt.endpoint}/${opt.api}/${opt.apiVersion}/`;
+  const headLen = head.length;
+
+  return href => {
+    if (href.indexOf(head) === 0) return href.substring(headLen);else throw new Error('Unsupported href - ' + href);
+  };
+};
+
 module.exports = (() => {
   var _ref = _asyncToGenerator(function* () {
     var _have = have(arguments, {
@@ -19,6 +29,10 @@ module.exports = (() => {
         model = _have.model;
     var _have$options = _have.options;
     let options = _have$options === undefined ? {} : _have$options;
+
+
+    const trimHref = removeHrefHostAndVersion(client);
+
     var _options$customEntity = options.customEntityFilter;
     let customEntityFilter = _options$customEntity === undefined ? function () {
       return true;
@@ -28,7 +42,7 @@ module.exports = (() => {
     let Metadata = {
       CustomEntity: {},
       updated: new Date(),
-      formatVersion: '4.0.0'
+      formatVersion: '5.0'
 
       // асинхронная загрузка метаданных внешних (доступных из API) сущностей
     };let typeMetadataPromises = Object.keys(model.types).filter(function (typeName) {
@@ -61,7 +75,7 @@ module.exports = (() => {
             // обработка метаданных сущности
             for (let attrState of metadata.states) {
               // Metadata.CustomerOrder.States.ОФОРМЛЕН = state.meta.href
-              type.States[getFieldName(attrState.name)] = attrState.meta.href;
+              type.States[getFieldName(attrState.name)] = trimHref(attrState.meta.href);
             }
           }
 
@@ -71,7 +85,7 @@ module.exports = (() => {
             // обработка метаданных сущности
             for (let attrMeta of metadata.attributes) {
               // Metadata.CustomerOrder.Attributes.ИСТОЧНИК_ЗАКАЗА = attribute.meta.href
-              type.Attributes[getFieldName(attrMeta.name)] = attrMeta.meta.href;
+              type.Attributes[getFieldName(attrMeta.name)] = trimHref(attrMeta.meta.href);
               if (attrMeta.customEntityMeta) {
                 let customEntities = yield client.fetchUrl(attrMeta.customEntityMeta.href);
                 let entName = getFieldName(customEntities.name);
@@ -83,7 +97,7 @@ module.exports = (() => {
                   let rows = yield loadRows(client, collection, { limit: 100 });
                   rows.reduce(function (res, row) {
                     // Metadata.CustomEntity.ИСТОЧНИКИ_ЗАКАЗА.САЙТ = entity.meta.href
-                    res[getFieldName(row.name)] = row.meta.href;
+                    res[getFieldName(row.name)] = trimHref(row.meta.href);
                     return res;
                   }, Metadata.CustomEntity[entName]);
                 }
