@@ -12,17 +12,13 @@ module.exports = function getAttr (...args) {
     have.argumentsObject
   ])
 
-  if (!entity.attributes) {
-    // TODO Нужна ли ошибка?
-    // throw new Error('Entity has no attributes')
-    return null
-  }
+  if (!entity.attributes) return null
 
   if (attrId == null && href == null) {
     throw new Error('getAttr: You should specify correct attribute id or href')
   }
 
-  return attrId != null
+  return (attrId != null
     ? entity.attributes.find(a => a.id === attrId)
-    : entity.attributes.find(a => a.meta != null && a.meta.href === href)
+    : entity.attributes.find(a => a.meta != null && a.meta.href === href)) || null
 }

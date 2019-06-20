@@ -33,15 +33,21 @@ test('getAttr (errors)', t => {
   t.end()
 })
 
-test('getAttr (empty)', t => {
+test('getAttr on not entity', t => {
   t.equal(getAttr({}, 'f4c073c5-1bcc-4d91-8b41-ed825495b677'), null,
-    'should return attribute object')
+    'should return null')
   t.end()
 })
 
 test('getAttr by id', t => {
   t.equal(getAttr(entity, entity.attributes[0].id), entity.attributes[0],
     'should return attribute object')
+  t.end()
+})
+
+test('getAttr by not exist id', t => {
+  t.equal(getAttr(entity, '000073c5-1bcc-4d91-8b41-ed8254950000'), null,
+    'should return null')
   t.end()
 })
 
