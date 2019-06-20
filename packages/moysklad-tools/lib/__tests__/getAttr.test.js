@@ -34,8 +34,8 @@ test('getAttr (errors)', t => {
   t.end();
 });
 
-test('getAttr (empty)', t => {
-  t.equal(getAttr({}, 'f4c073c5-1bcc-4d91-8b41-ed825495b677'), null, 'should return attribute object');
+test('getAttr on not entity', t => {
+  t.equal(getAttr({}, 'f4c073c5-1bcc-4d91-8b41-ed825495b677'), null, 'should return null');
   t.end();
 });
 
@@ -44,8 +44,19 @@ test('getAttr by id', t => {
   t.end();
 });
 
+test('getAttr by not exist id', t => {
+  t.equal(getAttr(entity, '000073c5-1bcc-4d91-8b41-ed8254950000'), null, 'should return null');
+  t.end();
+});
+
 test('getAttr by href', t => {
   t.equal(getAttr(entity, entity.attributes[1].meta.href), entity.attributes[1], 'should return attribute object');
+  t.end();
+});
+
+test('getAttr by ref', t => {
+  const ref = 'entity/product/metadata/attributes/f4c073c5-1bcc-4d91-8b41-ed825495b672';
+  t.equal(getAttr(entity, ref), entity.attributes[1], 'should return attribute object');
   t.end();
 });
 

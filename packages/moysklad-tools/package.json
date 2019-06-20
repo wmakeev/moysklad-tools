@@ -21,7 +21,8 @@
   "author": "Vitaliy V. Makeev",
   "dependencies": {
     "have2": "^1.0.0-beta.1",
-    "moysklad-type-matchers": "^0.2.0"
+    "moysklad-type-matchers": "^0.2.0",
+    "@wmakeev/maybes": "^0.4.0"
   },
   "engines": {
     "node": ">=4"

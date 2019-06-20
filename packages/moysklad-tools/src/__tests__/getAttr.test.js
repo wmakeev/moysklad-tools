@@ -57,6 +57,13 @@ test('getAttr by href', t => {
   t.end()
 })
 
+test('getAttr by ref', t => {
+  const ref = 'entity/product/metadata/attributes/f4c073c5-1bcc-4d91-8b41-ed825495b672'
+  t.equal(getAttr(entity, ref), entity.attributes[1],
+    'should return attribute object')
+  t.end()
+})
+
 test('getAttrVal', t => {
   t.equals(typeof getAttrVal, 'function')
   t.equal(getAttrVal(entity, entity.attributes[1].id), entity.attributes[1].value,
