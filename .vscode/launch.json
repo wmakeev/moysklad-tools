@@ -11,12 +11,10 @@
       "program": "${file}",
       "cwd": "${workspaceRoot}",
       "runtimeArgs": [
-        "--harmony",
-        "--require",
-        "dotenv/config",
         "--require",
         "isomorphic-fetch"
       ],
+      "envFile": "${workspaceFolder}/.env",
       "internalConsoleOptions": "openOnSessionStart"
     },
     {
