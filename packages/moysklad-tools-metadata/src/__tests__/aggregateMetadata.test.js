@@ -19,13 +19,19 @@ test('aggregateMetadata is ok', t => {
 test('aggregateMetadata', async t => {
   let moysklad = Moysklad({ queue: true })
   let metadata = await aggregateMetadata(moysklad, model, {
-    customEntityFilter: entName => ['Города'].indexOf(entName) === -1
+    customEntityFilter: entName => [
+      'Города',
+      'Пункты доставки',
+      'Бренды',
+      'Вид товара',
+      'Приход и расход'
+    ].indexOf(entName) === -1
   })
 
   t.ok(metadata, 'should return metadata')
 
   if (IS_DEV) {
-    fs.writeFileSync(path.resolve('_temp/aggregatedMetadata.json'),
+    fs.writeFileSync(path.resolve('__temp/aggregatedMetadata.json'),
       JSON.stringify(metadata, null, 2))
   }
 })
