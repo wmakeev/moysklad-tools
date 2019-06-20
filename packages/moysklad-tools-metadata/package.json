@@ -1,6 +1,6 @@
 {
   "name": "moysklad-tools-metadata",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Инструменты для работы с метаданными МойСклад",
   "main": "lib/index.js",
   "scripts": {
@@ -25,7 +25,7 @@
   "dependencies": {
     "moysklad": "^0.3.1",
     "moysklad-extension-queue": "^0.2.0",
-    "moysklad-tools": "^0.2.0"
+    "moysklad-tools": "^0.3.0"
   },
   "license": "MIT"
 }

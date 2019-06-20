@@ -1,6 +1,6 @@
 {
   "name": "moysklad-tools",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Набор инструментов для библиотеки moysklad",
   "main": "lib/index.js",
   "scripts": {
@@ -20,9 +20,9 @@
   ],
   "author": "Vitaliy V. Makeev",
   "dependencies": {
+    "@wmakeev/maybes": "^0.4.0",
     "have2": "^1.0.0-beta.1",
-    "moysklad-type-matchers": "^0.2.0",
-    "@wmakeev/maybes": "^0.4.0"
+    "moysklad-type-matchers": "^0.3.0"
   },
   "engines": {
     "node": ">=4"
